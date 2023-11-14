@@ -1,8 +1,22 @@
 import { useState } from 'react'
 import {
   BrowserRouter as Router,
-  Routes, Route, Link, useParams
+  Routes, Route, Link, useParams, useNavigate
 } from 'react-router-dom'
+const Notification=({ setNotification, notification })=>{
+  const resetNotification=()=>{
+    setTimeout(() => {
+      setNotification(null)
+    }, 5000)}
+    if (notification){
+      resetNotification()
+    }
+
+  return(
+    <div>{notification}</div>
+  )
+  
+}
 const Anecdote =({anecdotes})=>{
     const padding = {
     paddingBottom: 8
@@ -17,7 +31,7 @@ const Anecdote =({anecdotes})=>{
     </div>
   )
 }
-const Menu = ({ anecdotes, addNew }) => {
+const Menu = ({ anecdotes, addNew, notification, setNotification }) => {
   const padding = {
     paddingRight: 5
   }
@@ -28,9 +42,12 @@ const Menu = ({ anecdotes, addNew }) => {
       <Link style={padding} to='/create'>create new</Link>
       <Link style={padding} to='/about'>about</Link>
     </div>
+    <div>
+      {notification?<Notification setNotification={setNotification} notification={notification} />:null}
+    </div>
     <Routes>
       <Route path='/' element={<AnecdoteList anecdotes={anecdotes} />} />
-      <Route path='/create' element={<CreateNew addNew={addNew} />} />
+      <Route path='/create' element={<CreateNew addNew={addNew} setNotification={setNotification} />} />
       <Route path='/about' element={<About />} />
       <Route path='/anecdotes/:id' element={<Anecdote anecdotes={anecdotes} />}/>
     </Routes>
@@ -70,6 +87,7 @@ const Footer = () => (
 )
 
 const CreateNew = (props) => {
+  const navigate=useNavigate()
   const [content, setContent] = useState('')
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
@@ -83,6 +101,8 @@ const CreateNew = (props) => {
       info,
       votes: 0
     })
+    props.setNotification(`a new anecdote: ${content} created!`)
+    navigate('/')
   }
 
   return (
@@ -146,11 +166,10 @@ const App = () => {
 
     setAnecdotes(anecdotes.map(a => a.id === id ? voted : a))
   }
-
   return (
     <div>
       <h1>Software anecdotes</h1>
-      <Menu anecdotes={anecdotes} addNew={addNew} />
+      <Menu anecdotes={anecdotes} addNew={addNew} notification={notification} setNotification={setNotification} />
       <Footer />
     </div>
   )

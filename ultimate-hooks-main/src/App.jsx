@@ -18,16 +18,20 @@ const useField = (type) => {
 const useResource = (baseUrl) => {
   const [resources, setResources] = useState([])
 
-  // ...
+  // ...{ name: name.value, number: number.value}{ content: content.value }
 
   const create = (resource) => {
-    // ...
+    axios.post(baseUrl,resource)
+      .then(response=>setResources(resources.concat(response.data)))
+    // ...const [notes, noteService] = useResource('http://localhost:3005/notes')
   }
 
   const service = {
     create
   }
-
+  useEffect(()=>{
+    axios.get(baseUrl).then(response=>setResources(response.data))
+  },[baseUrl])
   return [
     resources, service
   ]
@@ -54,7 +58,7 @@ const App = () => {
   return (
     <div>
       <h2>notes</h2>
-      <form onSubmit={handleNoteSubmit}>
+      <form onSubmit={handleNoteSubmit}> 
         <input {...content} />
         <button>create</button>
       </form>

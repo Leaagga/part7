@@ -1,0 +1,80 @@
+import { createSlice } from '@reduxjs/toolkit'
+
+const notificationSlice = createSlice({
+  name: 'notification',
+  initialState: { content: null, type: 'NULL' },
+  reducers: {
+    createBlogNo: (state, action) => {
+      return {
+        content: `A new blog ${action.payload.title} by ${action.payload.author} added`,
+        type: 'blog',
+      }
+    },
+    likeBlogNo: (state, action) => {
+      return { content: `You liked ${action.payload.title}`, type: 'blog' }
+    },
+    deleteBlogNo: (state, action) => {
+      return {
+        content: `Blog ${action.payload.title} by ${action.payload.author} removed`,
+        type: 'blog',
+      }
+    },
+    logInNo: (state, action) => {
+      return { content: `${action.payload.username} logged in`, type: 'user' }
+    },
+    logOutNo: (state, action) => {
+      return { content: `Logged out`, type: 'user' }
+    },
+    clearNotificationNo: () => {
+      return { content: null, type: 'NULL' }
+    },
+    errorNotificationNo: (state, action) => {
+      return { content: `Error: ${action.payload}`, type: 'error' }
+    },
+  },
+})
+export const {
+  createBlogNo,
+  likeBlogNo,
+  deleteBlogNo,
+  logInNo,
+  logOutNo,
+  clearNotificationNo,
+  errorNotificationNo,
+} = notificationSlice.actions
+export const setNotification = (type, content, delayTime = 5000) => {
+  return (dispatch) => {
+    const notiClear = (t) => {
+      setTimeout(() => {
+        dispatch(clearNotificationNo())
+      }, t)
+    }
+    switch (type) {
+      case 'CREATE':
+        dispatch(createBlogNo(content))
+        notiClear(delayTime)
+        break
+      case 'LIKE':
+        dispatch(likeBlogNo(content))
+        notiClear(delayTime)
+        break
+      case 'DELETE':
+        dispatch(deleteBlogNo(content))
+        notiClear(delayTime)
+        break
+      case 'LOGIN':
+        dispatch(logInNo(content))
+        notiClear(delayTime)
+        break
+      case 'LOGOUT':
+        dispatch(logOutNo(content))
+        notiClear(delayTime)
+        break
+      case 'ERROR':
+        dispatch(errorNotificationNo(content))
+        notiClear(delayTime)
+        break
+    }
+  }
+}
+export default notificationSlice.reducer

@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { clearNotificationNo } from '../reducers/notificationReducer'
 
 const Notification = () => {
   const dispatch = useDispatch()

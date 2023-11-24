@@ -22,7 +22,7 @@ const notificationSlice = createSlice({
     logInNo: (state, action) => {
       return { content: `${action.payload.username} logged in`, type: 'user' }
     },
-    logOutNo: (state, action) => {
+    logOutNo: () => {
       return { content: `Logged out`, type: 'user' }
     },
     clearNotificationNo: () => {

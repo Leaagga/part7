@@ -48,4 +48,12 @@ export const likeBlog = (blog) => {
     dispatch(changeBlog(response))
   }
 }
+export const deleteBlog = (blog) => {
+  return async (dispatch) => {
+    const response = await BlogsService.newDelete(blog)
+    if (response.status == 200) {
+      dispatch(removeBlog(blog))
+    }
+  }
+}
 export default blogSlice.reducer

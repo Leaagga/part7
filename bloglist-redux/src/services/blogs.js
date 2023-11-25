@@ -13,4 +13,9 @@ const addLikes = async (blog) => {
   console.log(response)
   return response.data
 }
-export default { getAll, createNew, addLikes }
+const newDelete = async (blog) => {
+  const response = await axios.delete(`${baseUrl}/${blog.id}`)
+  console.log(response)
+  return response
+}
+export default { getAll, createNew, addLikes, newDelete }

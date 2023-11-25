@@ -39,62 +39,6 @@
       "url": "test5url",
       "likes": 5,
       "user": "test5user"
-    },
-    {
-      "author": "blog",
-      "title": "blog",
-      "url": "blog",
-      "likes": 0,
-      "user": "test",
-      "id": "72927"
-    },
-    {
-      "author": "qwe",
-      "title": "qwe",
-      "url": "qwe",
-      "likes": 0,
-      "user": "test",
-      "id": "26903"
-    },
-    {
-      "author": "test",
-      "title": "test",
-      "url": "test",
-      "likes": 0,
-      "user": "test",
-      "id": "11832"
-    },
-    {
-      "author": "new",
-      "title": "new",
-      "url": "new",
-      "likes": 0,
-      "user": "test",
-      "id": "25912"
-    },
-    {
-      "author": "2",
-      "title": "2",
-      "url": "2",
-      "likes": 0,
-      "user": "test",
-      "id": "37656"
-    },
-    {
-      "likes": 0,
-      "author": "likes",
-      "title": "likes",
-      "url": "likes",
-      "user": "test",
-      "id": "58266"
-    },
-    {
-      "likes": 0,
-      "author": "qqqq",
-      "title": "qqqq",
-      "url": "qqqq",
-      "user": "test",
-      "id": "43687"
     }
   ],
   "users": []

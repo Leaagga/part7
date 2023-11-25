@@ -8,4 +8,9 @@ const createNew = async (blog) => {
   const response = await axios.post(baseUrl, blog)
   return response.data
 }
-export default { getAll, createNew }
+const addLikes = async (blog) => {
+  const response = await axios.patch(`${baseUrl}/${blog.id}`, blog)
+  console.log(response)
+  return response.data
+}
+export default { getAll, createNew, addLikes }

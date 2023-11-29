@@ -41,5 +41,24 @@
       "user": "test5user"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "username": "1234",
+      "name": "1234",
+      "passwordHash": "$2a$10$6.3aHavTD8R.JP/3pYb4I.lb8rP2IIXAjBiCNVEoXbwDgBcnSbL66",
+      "id": "60255"
+    },
+    {
+      "username": "12345",
+      "name": "12345",
+      "passwordHash": "$2a$10$pXyureSgns2c6qIZErrYvO57bgfMx6edbisLaS4wpQ0vhllI9mBLe",
+      "id": "88320"
+    },
+    {
+      "username": "123456",
+      "name": "123456",
+      "passwordHash": "$2a$10$Cmoch48tUnIaOj4eu9frBOC/Hwn82qzFn0LpcqSUtFtCxm/6duWAS",
+      "id": "85179"
+    }
+  ]
 }

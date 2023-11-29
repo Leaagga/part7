@@ -31,6 +31,12 @@ const notificationSlice = createSlice({
     errorNotificationNo: (state, action) => {
       return { content: `Error: ${action.payload}`, type: 'error' }
     },
+    signUpNo: (state, action) => {
+      return {
+        content: `created new user ${action.payload.user}`,
+        type: 'user',
+      }
+    },
   },
 })
 export const {
@@ -41,6 +47,7 @@ export const {
   logOutNo,
   clearNotificationNo,
   errorNotificationNo,
+  signUpNo,
 } = notificationSlice.actions
 export const setNotification = (type, content, delayTime = 5000) => {
   return (dispatch) => {
@@ -72,6 +79,10 @@ export const setNotification = (type, content, delayTime = 5000) => {
         break
       case 'ERROR':
         dispatch(errorNotificationNo(content))
+        notiClear(delayTime)
+        break
+      case 'SIGNUP':
+        dispatch(signUpNo(content))
         notiClear(delayTime)
         break
     }

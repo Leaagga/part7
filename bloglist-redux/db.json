@@ -1,44 +1,40 @@
 {
   "blogs": [
     {
-      "likes": 13,
-      "author": "test1author",
-      "id": 1,
-      "title": "test1title",
-      "url": "test1url",
-      "user": "test1user"
+      "author": "testa",
+      "title": "testt",
+      "url": "testu",
+      "likes": 2,
+      "user": {
+        "username": "1234",
+        "name": "1234",
+        "id": "60255"
+      },
+      "id": "16091"
     },
     {
-      "likes": 11,
-      "author": "test2author",
-      "id": 2,
-      "title": "test2title",
-      "url": "test2url",
-      "user": "test2user"
+      "author": "testa2",
+      "title": "testt2",
+      "url": "testu2",
+      "likes": 1,
+      "user": {
+        "username": "1234",
+        "name": "1234",
+        "id": "60255"
+      },
+      "id": "26066"
     },
     {
-      "author": "test3author",
-      "id": 31,
-      "title": "test3title",
-      "url": "test3url",
-      "likes": 7,
-      "user": "test3user"
-    },
-    {
-      "author": "test4author",
-      "id": 4,
-      "title": "test4title",
-      "url": "test4url",
-      "likes": 6,
-      "user": "test4user"
-    },
-    {
-      "author": "test5author",
-      "id": 5,
-      "title": "test5title",
-      "url": "test5url",
-      "likes": 5,
-      "user": "test5user"
+      "author": "test",
+      "title": "test",
+      "url": "test",
+      "likes": 0,
+      "user": {
+        "username": "12345",
+        "name": "12345",
+        "id": "88320"
+      },
+      "id": "60853"
     }
   ],
   "users": [
@@ -59,6 +55,12 @@
       "name": "123456",
       "passwordHash": "$2a$10$Cmoch48tUnIaOj4eu9frBOC/Hwn82qzFn0LpcqSUtFtCxm/6duWAS",
       "id": "85179"
+    },
+    {
+      "username": "1234567",
+      "name": "1234567",
+      "passwordHash": "$2a$10$NUEsmgkvTDtCFU0sKxzfsu3HG3dtV4YfBkJ8QWlbng.hHD4SnjocC",
+      "id": "57630"
     }
   ]
 }

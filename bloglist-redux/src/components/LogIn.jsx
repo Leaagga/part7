@@ -36,7 +36,10 @@ const LogIn = () => {
   return user == null ? (
     <div>
       <form onSubmit={handleLogIn} style={hideWhenVisible}>
-        Log in
+        Log in &nbsp;&nbsp;&nbsp;&nbsp;
+        <button onClick={() => setVisible(true)} type='button'>
+          sign up
+        </button>
         <div>
           username
           <input value={username} onChange={handleUsername} />
@@ -46,12 +49,12 @@ const LogIn = () => {
           <input value={password} onChange={handlePassword} />
         </div>
         <button type='submit'>log in</button>
-        <button onClick={() => setVisible(true)} type='button'>
-          sign up
-        </button>
       </form>
       <form onSubmit={handleSignUp} style={showWhenVisible}>
-        Sign up
+        Sign up &nbsp;&nbsp;&nbsp;&nbsp;
+        <button onClick={() => setVisible(false)} type='button'>
+          log in
+        </button>
         <div>
           username
           <input value={username} onChange={handleUsername} />
@@ -65,14 +68,11 @@ const LogIn = () => {
           <input value={name} onChange={handleName} />
         </div>
         <button type='submit'>sign up</button>
-        <button onClick={() => setVisible(false)} type='button'>
-          log in
-        </button>
       </form>
     </div>
   ) : (
     <div>
-      {user.username}
+      {user.username} logged in.
       <button onClick={handleLogOut}>log out</button>
     </div>
   )

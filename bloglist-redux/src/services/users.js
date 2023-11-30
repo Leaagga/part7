@@ -44,7 +44,12 @@ const logIn = async (user) => {
     .setProtectedHeader({ alg: 'HS256' })
     .sign(secret)
   console.log(token)
-  return { token, username: foundUser.username, name: foundUser.name }
+  return {
+    token,
+    username: foundUser.username,
+    name: foundUser.name,
+    id: foundUser.id,
+  }
 }
 const newUser = async () => {}
 export default { setNewUser, logIn }

@@ -74,7 +74,7 @@ export const setNotification = (type, content, delayTime = 5000) => {
         notiClear(delayTime)
         break
       case 'LOGOUT':
-        dispatch(logOutNo(content))
+        dispatch(logOutNo())
         notiClear(delayTime)
         break
       case 'ERROR':

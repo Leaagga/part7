@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { deleteBlog, likeBlog } from '../reducers/blogRedcuer'
 import { likeBlogNo } from '../reducers/notificationReducer'
 import { deleteBlogNo } from '../reducers/notificationReducer'
@@ -8,28 +8,31 @@ const BlogItem = (prop) => {
   const dispatch = useDispatch()
   const handleLikes = (event) => {
     dispatch(likeBlog(blog))
-    dispatch(likeBlogNo(blog))
   }
+
+  const user = useSelector((state) => {
+    return state.user
+  })
   const handleDelete = (event) => {
     if (window.confirm(`delete ${blog.title} by ${blog.author}?`)) {
       dispatch(deleteBlog(blog))
-      dispatch(deleteBlogNo(blog))
     }
   }
   return (
     <div className='blogItem'>
       <div>
         <div>
-          {blog.title} {blog.author}
+          {blog.title} {blog.author}&nbsp;
+          {user.user.username == blog.user.username ? (
+            <button onClick={handleDelete}>delete</button>
+          ) : null}
         </div>
         <div>
           {blog.likes}
           <button onClick={handleLikes}>like</button>
         </div>
         <div>{blog.url}</div>
-        <div>
-          <button onClick={handleDelete}>delete</button>
-        </div>
+        <div>{blog.user.username}</div>
       </div>
     </div>
   )

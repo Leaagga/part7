@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { initialBlog } from '../reducers/blogRedcuer'
 const Blog = () => {
   const dispatch = useDispatch()
+
   const blogList = useSelector((state) => {
     //return!!!!!!!!!!!!!
     console.log(state)
@@ -13,6 +14,7 @@ const Blog = () => {
   console.log(blogList)
   return (
     <div className='Blog'>
+      Blog
       <BlogForm />
       <div>
         {blogList ? (

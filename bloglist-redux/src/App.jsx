@@ -1,5 +1,5 @@
 import Notification from './components/Notification'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { logInNo } from './reducers/notificationReducer'
 import LogIn from './components/LogIn'
 import { setNotification } from './reducers/notificationReducer'
@@ -10,25 +10,29 @@ import { getUser } from './reducers/userReducer'
 
 const App = () => {
   const dispatch = useDispatch()
-  const localUser = localStorage.getItem('LogInUser')
+
+  useEffect(() => {
+    const localUser = window.localStorage.getItem('LogInUser')
+    if (localUser) {
+      dispatch(getUser())
+    }
+  }, [])
+  const user = useSelector((state) => {
+    return state.user
+  })
   useEffect(() => {
     dispatch(initialBlog())
   }, [dispatch])
-  if (localUser) {
-    dispatch(getUser())
-  }
   return (
     <div>
       <Notification />
-      {localUser ? (
+      <LogIn />
+      {user.user ? (
         <div>
-          <LogIn />
           <Blog />
         </div>
       ) : (
-        <div>
-          <LogIn />
-        </div>
+        <></>
       )}
     </div>
   )

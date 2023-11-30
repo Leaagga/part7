@@ -8,16 +8,16 @@ const usersSlice = createSlice({
   initialState: { user: null },
   reducers: {
     ininitalUsers: (state, action) => {
-      localStorage.setItem('LogInUser', JSON.stringify(action.payload))
+      window.localStorage.setItem('LogInUser', JSON.stringify(action.payload))
       console.log(action.payload)
       return { user: action.payload }
     },
     getUser: (state, action) => {
-      const localUser = JSON.parse(localStorage.getItem('LogInUser'))
+      const localUser = JSON.parse(window.localStorage.getItem('LogInUser'))
       return { user: localUser }
     },
     logOut: (state, action) => {
-      localStorage.removeItem('LogInUser')
+      window.localStorage.removeItem('LogInUser')
       return { user: null }
     },
   },
@@ -28,11 +28,9 @@ export const createUser = (user) => {
     const response = await usersService.setNewUser(user)
     console.log(response)
     if (response == 'Invalid username') {
-      dispatch(
-        setNotification({ type: 'ERROR', content: 'Error:Invalid username' })
-      )
+      dispatch(setNotification('ERROR', 'Error:Invalid username'))
     } else {
-      dispatch(setNotification({ type: 'SIGNUP', content: user }))
+      dispatch(setNotification('SIGNUP', user))
     }
   }
 }
@@ -42,14 +40,10 @@ export const logInUser = (user) => {
     console.log(response)
     switch (response) {
       case 'Invalid password':
-        dispatch(
-          setNotification({ type: 'ERROR', content: 'Invalid password' })
-        )
+        dispatch(setNotification('ERROR', 'Invalid password'))
         break
       case 'Invalid username':
-        dispatch(
-          setNotification({ type: 'ERROR', content: 'Invalid username' })
-        )
+        dispatch(setNotification('ERROR', 'Invalid username'))
         break
       default:
         dispatch(
@@ -57,16 +51,17 @@ export const logInUser = (user) => {
             token: response.token,
             username: response.username,
             name: response.name,
+            id: response.id,
           })
         )
-        dispatch(logInNo({ username: response.username }))
+        dispatch(setNotification('LOGIN', { username: response.username }))
     }
   }
 }
 export const logOutUser = () => {
   return (dispatch) => {
     dispatch(logOut())
-    dispatch(logOutNo())
+    dispatch(setNotification('LOGOUT'))
   }
 }
 export default usersSlice.reducer

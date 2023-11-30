@@ -6,6 +6,9 @@ const BlogForm = () => {
   const [author, setAuthor] = useState()
   const [url, setUrl] = useState()
   const [title, setTitle] = useState()
+  const user = useSelector((state) => {
+    return state.user
+  })
   const handleAuthorChange = ({ target }) => {
     setAuthor(target.value)
   }
@@ -19,8 +22,19 @@ const BlogForm = () => {
 
   const handleBlogCreate = (evnet) => {
     event.preventDefault()
-    dispatch(createBlog({ author, title, url, likes: 0, user: 'test' }))
-    dispatch(createBlogNo({ author, title }))
+    dispatch(
+      createBlog({
+        author,
+        title,
+        url,
+        likes: 0,
+        user: {
+          username: user.user.username,
+          name: user.user.name,
+          id: user.user.id,
+        },
+      })
+    )
   }
   return (
     <div>

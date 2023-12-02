@@ -5,31 +5,7 @@
       "url": "test",
       "title": "test",
       "id": "29450",
-      "likes": 1,
-      "user": "test"
-    },
-    {
-      "author": "new",
-      "url": "new",
-      "title": "new",
-      "id": "1957",
-      "likes": 0,
-      "user": "test"
-    },
-    {
-      "author": "new2",
-      "url": "new2",
-      "title": "new2",
-      "id": "67792",
-      "likes": 0,
-      "user": "test"
-    },
-    {
-      "author": "new3",
-      "url": "new3",
-      "title": "new3",
-      "id": "52306",
-      "likes": 0,
+      "likes": 2,
       "user": "test"
     }
   ]

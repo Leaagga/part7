@@ -14,3 +14,7 @@ export const likeBlog = async (blog) => {
   })
   return response.data
 }
+export const deleteBlog = async (blog) => {
+  const response = await axios.delete(`${baseUrl}/${blog.id}`)
+  return response.data
+}

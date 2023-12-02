@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import { getBlogs, createBlog } from './requests'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
+import Notification from './components/Notification'
 function App() {
   const result = useQuery({
     queryKey: ['blogs'],
@@ -18,6 +19,7 @@ function App() {
   const blogs = result.data
   return (
     <div>
+      <Notification />
       <BlogForm />
       {blogs ? <Blog blogs={blogs} /> : null}
     </div>

@@ -5,11 +5,13 @@ const Blog = (props) => {
   return (
     <div>
       <div>
-        {blogs.map((blog) => (
-          <div key={blog.id}>
-            <BlogItem blog={blog} />
-          </div>
-        ))}
+        {blogs
+          .sort((a, b) => b.likes - a.likes)
+          .map((blog) => (
+            <div key={blog.id}>
+              <BlogItem blog={blog} />
+            </div>
+          ))}
       </div>
     </div>
   )

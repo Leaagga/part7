@@ -8,5 +8,19 @@
       "likes": 2,
       "user": "test"
     }
+  ],
+  "users": [
+    {
+      "id": "37231",
+      "name": "1234",
+      "username": "1234",
+      "passwordHash": "$2a$10$/E36ttEFuBIRTUBhthGMGuLeG2edAtH/ZLxUbhV7YfYxog/VfgMHO"
+    },
+    {
+      "id": "72761",
+      "name": "12345",
+      "username": "12345",
+      "passwordHash": "$2a$10$ckznZSKtOwzxE2zzm3lArOkPLW8zlqz8G3XEGFVqNLbOvO3EUFVhi"
+    }
   ]
 }

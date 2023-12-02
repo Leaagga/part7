@@ -1,22 +1,22 @@
-import { deleteBlog, likeBlog } from '../requests'
+import { deleteBlog, likeBlog } from '../blogRequests'
 import notificationContext from '../notificationContext'
 import { useState, useContext } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 const BlogItem = ({ blog }) => {
   const queryClient = useQueryClient()
-  const [notification, dispatch] = useContext(notificationContext)
+  const [notification, notiDispatch] = useContext(notificationContext)
   const likeBlogMutation = useMutation({
     mutationFn: likeBlog,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['blogs'] })
-      dispatch({ type: 'LIKES', payload: blog })
+      notiDispatch({ type: 'LIKES', payload: blog })
     },
   })
   const deleteBlogMutation = useMutation({
     mutationFn: deleteBlog,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['blogs'] })
-      dispatch({ type: 'DELETE', payload: blog })
+      notiDispatch({ type: 'DELETE', payload: blog })
     },
   })
   const handleLikes = (event) => {

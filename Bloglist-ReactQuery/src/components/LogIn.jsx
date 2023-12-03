@@ -2,10 +2,12 @@ import { useContext, useState } from 'react'
 import userContext from '../UserContext'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { createUser, logIn } from '../userRequest'
+import notificationContext from '../notificationContext'
 const LogIn = () => {
   const queryClient = useQueryClient()
   const [visible, setVisible] = useState(false)
   const [user, userDispatch] = useContext(userContext)
+  const [notification, notificationDispatch] = useContext(notificationContext)
   const [name, setName] = useState()
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
@@ -20,16 +22,20 @@ const LogIn = () => {
   }
   const createUserMutation = useMutation({
     mutationFn: createUser,
-    onSuccess: () => {
+    onSuccess: (newUser) => {
       queryClient.invalidateQueries({ queryKey: ['users'] })
+      notificationDispatch({ type: 'SIGNUP', payload: newUser })
     },
   })
   const logInMutation = useMutation({
     mutationFn: logIn,
     onSuccess: (loggedUser) => {
+      console.log(loggedUser)
       userDispatch({ type: 'LOGIN', payload: loggedUser })
+      notificationDispatch({ type: 'LOGIN', payload: loggedUser })
     },
   })
+
   const handleSignUp = (event) => {
     event.preventDefault()
     createUserMutation.mutate({ username, password, name })
@@ -37,6 +43,11 @@ const LogIn = () => {
   const handleLogIn = (event) => {
     event.preventDefault()
     logInMutation.mutate({ password, username })
+  }
+  const handleLogOut = (event) => {
+    event.preventDefault()
+    userDispatch({ type: 'LOGOUT' })
+    notificationDispatch({ type: 'LOGOUT' })
   }
   const hideWhenVisible = { display: visible ? 'none' : '' }
   const showWhenVisible = { display: visible ? '' : 'none' }
@@ -80,7 +91,7 @@ const LogIn = () => {
   ) : (
     <div>
       {user.username} logged in.
-      {/* <button onClick={handleLogOut}>log out</button> */}
+      <button onClick={handleLogOut}>log out</button>
     </div>
   )
 }

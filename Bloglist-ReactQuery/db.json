@@ -1,12 +1,19 @@
 {
   "blogs": [
     {
-      "author": "test",
-      "url": "test",
-      "title": "test",
-      "id": "29450",
-      "likes": 2,
-      "user": "test"
+      "author": "123",
+      "url": "123",
+      "title": "123",
+      "id": "16338",
+      "likes": 0,
+      "user": {
+        "user": {
+          "token": "eyJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6IjEyMzQifQ.-3JOneYrE0pbo70nTH2aKYwKRfPgOopxBiYMQkdeOkQ",
+          "username": "1234",
+          "name": "1234",
+          "id": "37231"
+        }
+      }
     }
   ],
   "users": [

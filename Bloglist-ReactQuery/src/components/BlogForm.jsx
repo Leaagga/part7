@@ -1,12 +1,13 @@
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { useState, useContext } from 'react'
 import { createBlog } from '../blogRequests'
-
+import userContext from '../UserContext'
 import notificationContext from '../notificationContext'
 const BlogForm = () => {
   const queryClient = useQueryClient()
   const getId = () => (100000 * Math.random()).toFixed(0)
   const [notification, notiDispatch] = useContext(notificationContext)
+  const [user, userDispatch] = useContext(userContext)
   const newBlogMutation = useMutation({
     mutationFn: createBlog,
     onSuccess: () => {
@@ -27,7 +28,14 @@ const BlogForm = () => {
   }
   const handleBlogCreate = async (event) => {
     event.preventDefault()
-    const content = { author, url, title, id: getId(), likes: 0, user: 'test' }
+    const content = {
+      author,
+      url,
+      title,
+      id: getId(),
+      likes: 0,
+      user,
+    }
     setAuthor()
     setTitle()
     setUrl()

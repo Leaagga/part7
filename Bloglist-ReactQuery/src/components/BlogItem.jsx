@@ -2,8 +2,10 @@ import { deleteBlog, likeBlog } from '../blogRequests'
 import notificationContext from '../notificationContext'
 import { useState, useContext } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
+import userContext from '../UserContext'
 const BlogItem = ({ blog }) => {
   const queryClient = useQueryClient()
+  const [user, userDispatch] = useContext(userContext)
   const [notification, notiDispatch] = useContext(notificationContext)
   const likeBlogMutation = useMutation({
     mutationFn: likeBlog,
@@ -34,16 +36,17 @@ const BlogItem = ({ blog }) => {
       <div>
         <div>
           {blog.title} {blog.author}
-          {/* &nbsp;
-          {user.user.username == blog.user.username ? ( */}
-          <button onClick={handleDelete}>delete</button>
+          &nbsp;
+          {user.user.username == blog.user.user.username ? (
+            <button onClick={handleDelete}>delete</button>
+          ) : null}
         </div>
         <div>
           {blog.likes}
           <button onClick={handleLikes}>like</button>
         </div>
         <div>{blog.url}</div>
-        {/* <div>{blog.user.username}</div> */}
+        <div>{blog.user.user.username}</div>
       </div>
     </div>
   )

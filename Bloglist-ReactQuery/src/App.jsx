@@ -10,7 +10,7 @@ import userContext from './UserContext'
 function App() {
   const [user, userDispatch] = useContext(userContext)
   useEffect(() => {
-    if (window.localStorage.getItem('LogInUser')) {
+    if (window.localStorage.getItem('LoggedInUser')) {
       userDispatch({ type: 'GETUSER' })
     }
   }, [])

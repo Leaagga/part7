@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import axios from 'axios'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { getBlogs, createBlog } from './blogRequests'
@@ -7,8 +8,18 @@ import BlogForm from './components/BlogForm'
 import Notification from './components/Notification'
 import LogIn from './components/LogIn'
 import userContext from './UserContext'
+import Users from './components/Users'
+import { getAllUsers } from './userRequest'
 function App() {
   const [user, userDispatch] = useContext(userContext)
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    const getUsers = async () => {
+      const gotusers = await getAllUsers()
+      setUsers(gotusers)
+    }
+    getUsers()
+  }, [user])
   useEffect(() => {
     if (window.localStorage.getItem('LoggedInUser')) {
       userDispatch({ type: 'GETUSER' })
@@ -26,19 +37,31 @@ function App() {
     return <div>loading data...</div>
   }
   const blogs = result.data
+  const Home = ({ user, blogs }) => {
+    return user.user ? (
+      <div>
+        <BlogForm />
+        {blogs ? <Blog blogs={blogs} /> : null}
+      </div>
+    ) : (
+      <div></div>
+    )
+  }
+  return (
+    <Router>
+      <h2>blogs</h2>
+      <div>
+        <Link to='/users'>users</Link>
+        {/* <Link to='/'>home</Link> */}
+      </div>
 
-  return user.user ? (
-    <div>
       <Notification />
       <LogIn />
-      <BlogForm />
-      {blogs ? <Blog blogs={blogs} /> : null}
-    </div>
-  ) : (
-    <div>
-      <Notification />
-      <LogIn />
-    </div>
+      <Routes>
+        <Route path='/users' element={<Users users={users} />} />
+        <Route path='/' element={<Home user={user} blogs={blogs} />} />
+      </Routes>
+    </Router>
   )
 }
 

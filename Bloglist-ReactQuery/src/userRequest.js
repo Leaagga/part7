@@ -18,6 +18,7 @@ export const createUser = async (user) => {
     name: user.name,
     username: user.username,
     passwordHash: passwordHash,
+    blogs: [],
   }
   const response = await axios.post(baseUrl, newUser)
 
@@ -46,5 +47,40 @@ export const logIn = async (user) => {
     username: foundUser.username,
     name: foundUser.name,
     id: foundUser.id,
+    blogs: foundUser.blogs,
   }
+}
+export const getAllUsers = async () => {
+  const response = await axios.get(baseUrl)
+  const users = response.data
+  return users
+}
+export const addBlog = async ({ user, blog }) => {
+  console.log(user)
+  console.log(blog)
+  const blogsList = user.blogs
+  const addedBlog = blogsList.concat({
+    id: blog.id,
+    title: blog.title,
+    author: blog.author,
+  })
+  console.log(addedBlog)
+  const response = await axios.patch(`${baseUrl}/${user.id}`, {
+    blogs: addedBlog,
+  })
+  return response.data
+}
+
+export const removeBlog = async ({ user, blog }) => {
+  const blogsList = user.blogs
+  console.log(blogsList)
+  console.log(blog)
+  console.log(user)
+  const removedBlogUser = blogsList.filter((b) => b.id != blog.id)
+  console.log(removedBlogUser)
+  const response = await axios.patch(`${baseUrl}/${user.id}`, {
+    blogs: removedBlogUser,
+  })
+  console.log(response.data)
+  return response.data
 }

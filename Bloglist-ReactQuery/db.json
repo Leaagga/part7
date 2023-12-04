@@ -1,33 +1,73 @@
 {
   "blogs": [
     {
-      "author": "123",
-      "url": "123",
-      "title": "123",
-      "id": "16338",
+      "author": "1234",
+      "url": "1234",
+      "title": "1234",
+      "id": "64811",
       "likes": 0,
       "user": {
-        "user": {
-          "token": "eyJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6IjEyMzQifQ.-3JOneYrE0pbo70nTH2aKYwKRfPgOopxBiYMQkdeOkQ",
-          "username": "1234",
-          "name": "1234",
-          "id": "37231"
-        }
+        "username": "1234",
+        "name": "1234",
+        "id": "18118"
+      }
+    },
+    {
+      "author": "12345",
+      "url": "12345",
+      "title": "12345",
+      "id": "42244",
+      "likes": 0,
+      "user": {
+        "username": "12345",
+        "name": "12345",
+        "id": "23495"
+      }
+    },
+    {
+      "author": "1234567",
+      "url": "1234567",
+      "title": "1234567",
+      "id": "41547",
+      "likes": 0,
+      "user": {
+        "username": "12345",
+        "name": "12345",
+        "id": "23495"
       }
     }
   ],
   "users": [
     {
-      "id": "37231",
+      "id": "18118",
       "name": "1234",
       "username": "1234",
-      "passwordHash": "$2a$10$/E36ttEFuBIRTUBhthGMGuLeG2edAtH/ZLxUbhV7YfYxog/VfgMHO"
+      "passwordHash": "$2a$10$ePrsRwva206RWVApfZmEj.3S3RbDc2yrVisBAWn/S9joViuYZf/EK",
+      "blogs": [
+        {
+          "id": "64811",
+          "title": "1234",
+          "author": "1234"
+        }
+      ]
     },
     {
-      "id": "72761",
+      "id": "23495",
       "name": "12345",
       "username": "12345",
-      "passwordHash": "$2a$10$ckznZSKtOwzxE2zzm3lArOkPLW8zlqz8G3XEGFVqNLbOvO3EUFVhi"
+      "passwordHash": "$2a$10$un5fAwb2huzAWLBh6IBLIejZ2HY330bPVL1XAI4AogA/fgIdQjzba",
+      "blogs": [
+        {
+          "id": "42244",
+          "title": "12345",
+          "author": "12345"
+        },
+        {
+          "id": "41547",
+          "title": "1234567",
+          "author": "1234567"
+        }
+      ]
     }
   ]
 }

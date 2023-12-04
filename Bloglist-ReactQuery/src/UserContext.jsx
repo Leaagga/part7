@@ -12,6 +12,13 @@ const userReducer = (state, action) => {
       return { user: action.payload }
     case 'GETUSER':
       return { user: JSON.parse(window.localStorage.getItem('LoggedInUser')) }
+    case 'UPDATE':
+      window.localStorage.clear('LoggedInUser')
+      window.localStorage.setItem(
+        'LoggedInUser',
+        JSON.stringify(action.payload)
+      )
+      return { user: action.payload }
   }
 }
 const userContext = createContext()

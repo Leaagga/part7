@@ -90,7 +90,7 @@ const LogIn = () => {
     </div>
   ) : (
     <div>
-      {user.username} logged in.
+      {user.user.username} logged in.
       <button onClick={handleLogOut}>log out</button>
     </div>
   )

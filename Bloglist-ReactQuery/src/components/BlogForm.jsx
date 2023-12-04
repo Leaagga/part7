@@ -3,6 +3,7 @@ import { useState, useContext } from 'react'
 import { createBlog } from '../blogRequests'
 import userContext from '../UserContext'
 import notificationContext from '../notificationContext'
+import { addBlog } from '../userRequest'
 const BlogForm = () => {
   const queryClient = useQueryClient()
   const getId = () => (100000 * Math.random()).toFixed(0)
@@ -10,8 +11,16 @@ const BlogForm = () => {
   const [user, userDispatch] = useContext(userContext)
   const newBlogMutation = useMutation({
     mutationFn: createBlog,
-    onSuccess: () => {
+    onSuccess: (newBlog) => {
       queryClient.invalidateQueries({ queryKey: ['blogs'] })
+      createBlogUserMutation.mutate({ user: user.user, blog: newBlog })
+    },
+  })
+  const createBlogUserMutation = useMutation({
+    mutationFn: addBlog,
+    onSuccess: (updatedUser) => {
+      userDispatch({ type: 'UPDATE', payload: updatedUser })
+      queryClient.invalidateQueries({ queryKey: ['users'] })
     },
   })
   const [author, setAuthor] = useState()
@@ -34,7 +43,11 @@ const BlogForm = () => {
       title,
       id: getId(),
       likes: 0,
-      user,
+      user: {
+        username: user.user.username,
+        name: user.user.name,
+        id: user.user.id,
+      },
     }
     setAuthor()
     setTitle()

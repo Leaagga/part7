@@ -27,7 +27,7 @@ const notificationReducer = (state, action) => {
       return { content: `Error: ${action.payload}`, type: 'error' }
     case 'SIGNUP':
       return {
-        content: `created new user ${action.payload.user}`,
+        content: `created new user ${action.payload.username}`,
         type: 'user',
       }
     default:

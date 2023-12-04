@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useParams,
+} from 'react-router-dom'
 
-const Users = ({ users }) => {
+const UsersHome = ({ users }) => {
   return (
     <div>
       <h2>Users</h2>
@@ -14,12 +21,14 @@ const Users = ({ users }) => {
         <tbody>
           {users
             .sort((a, b) => {
-              return Number(b.likes) - Number(a.likes)
+              return Number(b.blogs.length) - Number(a.blogs.length)
             })
             .map((u) => {
               return (
                 <tr key={u.id}>
-                  <td>{u.username}</td>
+                  <td>
+                    <Link to={`/users/${u.id}`}>{u.username}</Link>
+                  </td>
                   <td>{u.blogs.length}</td>
                 </tr>
               )
@@ -29,4 +38,5 @@ const Users = ({ users }) => {
     </div>
   )
 }
-export default Users
+
+export default UsersHome

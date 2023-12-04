@@ -8,7 +8,8 @@ import BlogForm from './components/BlogForm'
 import Notification from './components/Notification'
 import LogIn from './components/LogIn'
 import userContext from './UserContext'
-import Users from './components/Users'
+import UsersHome from './components/UsersHome'
+import UsersBlog from './components/UsersBlogs'
 import { getAllUsers } from './userRequest'
 function App() {
   const [user, userDispatch] = useContext(userContext)
@@ -58,7 +59,8 @@ function App() {
       <Notification />
       <LogIn />
       <Routes>
-        <Route path='/users' element={<Users users={users} />} />
+        <Route path='/users' element={<UsersHome users={users} />} />
+        <Route path='/users/:userId' element={<UsersBlog users={users} />} />
         <Route path='/' element={<Home user={user} blogs={blogs} />} />
       </Routes>
     </Router>

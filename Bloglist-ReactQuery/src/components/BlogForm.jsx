@@ -51,6 +51,7 @@ const BlogForm = () => {
         name: user.user.name,
         id: user.user.id,
       },
+      comment: [],
     }
     setAuthor()
     setTitle()

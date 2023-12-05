@@ -58,17 +58,19 @@ function App() {
     <Router>
       <nav style={{ backgroundColor: 'grey' }}>
         <table>
-          <tr>
-            <td>
-              <Link to='/'>blogs</Link>
-            </td>
-            <td>
-              <Link to='/users'>users</Link>
-            </td>
-            <td>
-              <LogIn />
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>
+                <Link to='/'>blogs</Link>
+              </td>
+              <td>
+                <Link to='/users'>users</Link>
+              </td>
+              <td>
+                <LogIn />
+              </td>
+            </tr>
+          </tbody>
         </table>
       </nav>
       <h2>blogs</h2>

@@ -10,7 +10,11 @@
         "username": "1234",
         "name": "1234",
         "id": "18118"
-      }
+      },
+      "comments": [
+        "test1",
+        "test2"
+      ]
     },
     {
       "author": "12345",
@@ -22,7 +26,11 @@
         "username": "12345",
         "name": "12345",
         "id": "23495"
-      }
+      },
+      "comments": [
+        "test1",
+        "test2"
+      ]
     },
     {
       "author": "1234567",
@@ -34,19 +42,27 @@
         "username": "12345",
         "name": "12345",
         "id": "23495"
-      }
+      },
+      "comments": [
+        "test1",
+        "test2"
+      ]
     },
     {
       "author": "1231231",
       "url": "132123123",
       "title": "123123",
       "id": "26987",
-      "likes": 0,
+      "likes": 1,
       "user": {
         "username": "1234",
         "name": "1234",
         "id": "18118"
-      }
+      },
+      "comments": [
+        "test1",
+        "test2"
+      ]
     }
   ],
   "users": [

@@ -11,6 +11,7 @@ import {
   Link,
   useParams,
 } from 'react-router-dom'
+import BlogComments from './BlogComments'
 const BlogItem = ({ blogs }) => {
   const { blogId } = useParams()
   const blog = blogs.find((blog) => blog.id == blogId)
@@ -73,6 +74,7 @@ const BlogItem = ({ blogs }) => {
         </div>
         <div>add by {blog.user.username}</div>
       </div>
+      <BlogComments blog={blog} />
     </div>
   )
 }

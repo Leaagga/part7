@@ -53,16 +53,29 @@ function App() {
       </div>
     )
   }
+
   return (
     <Router>
+      <nav style={{ backgroundColor: 'grey' }}>
+        <table>
+          <tr>
+            <td>
+              <Link to='/'>blogs</Link>
+            </td>
+            <td>
+              <Link to='/users'>users</Link>
+            </td>
+            <td>
+              <LogIn />
+            </td>
+          </tr>
+        </table>
+      </nav>
       <h2>blogs</h2>
-      <div>
-        <Link to='/users'>users</Link>
-        {/* <Link to='/'>home</Link> */}
-      </div>
+      <div></div>
 
       <Notification />
-      <LogIn />
+
       <Routes>
         <Route path='/users' element={<UsersHome users={users} />} />
         <Route path='/users/:userId' element={<UsersBlog users={users} />} />

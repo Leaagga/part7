@@ -7,6 +7,9 @@ import { addBlog } from '../userRequest'
 const BlogForm = () => {
   const queryClient = useQueryClient()
   const getId = () => (100000 * Math.random()).toFixed(0)
+  const [visible, setVisible] = useState(false)
+  const hideWhenVisible = { display: visible ? 'none' : '' }
+  const showWhenVisible = { display: visible ? '' : 'none' }
   const [notification, notiDispatch] = useContext(notificationContext)
   const [user, userDispatch] = useContext(userContext)
   const newBlogMutation = useMutation({
@@ -58,19 +61,31 @@ const BlogForm = () => {
   return (
     <div>
       <form onSubmit={handleBlogCreate}>
-        <div>
-          title
-          <input value={title} onChange={handleTitleChange} />
+        <button
+          type='button'
+          style={hideWhenVisible}
+          onClick={() => setVisible(true)}
+        >
+          create new blog
+        </button>
+        <div style={showWhenVisible}>
+          <div>
+            title
+            <input value={title} onChange={handleTitleChange} />
+          </div>
+          <div>
+            author
+            <input value={author} onChange={handleAuthorChange} />
+          </div>
+          <div>
+            url
+            <input value={url} onChange={handleUrlChange} />
+          </div>
+          <button type='submit'>submit</button>
+          <button type='button' onClick={() => setVisible(false)}>
+            close
+          </button>
         </div>
-        <div>
-          author
-          <input value={author} onChange={handleAuthorChange} />
-        </div>
-        <div>
-          url
-          <input value={url} onChange={handleUrlChange} />
-        </div>
-        <button type='submit'>submit</button>
       </form>
     </div>
   )

@@ -58,14 +58,11 @@ const LogIn = () => {
         <button onClick={() => setVisible(true)} type='button'>
           sign up
         </button>
-        <div>
-          username
-          <input value={username} onChange={handleUsername} />
-        </div>
-        <div>
-          password
-          <input value={password} onChange={handlePassword} />
-        </div>
+        &nbsp;&nbsp; username
+        <input value={username} onChange={handleUsername} />
+        &nbsp;&nbsp; password
+        <input value={password} onChange={handlePassword} />
+        &nbsp;&nbsp;
         <button type='submit'>log in</button>
       </form>
       <form onSubmit={handleSignUp} style={showWhenVisible}>
@@ -73,18 +70,13 @@ const LogIn = () => {
         <button onClick={() => setVisible(false)} type='button'>
           log in
         </button>
-        <div>
-          username
-          <input value={username} onChange={handleUsername} />
-        </div>
-        <div>
-          password
-          <input value={password} onChange={handlePassword} />
-        </div>
-        <div>
-          name
-          <input value={name} onChange={handleName} />
-        </div>
+        &nbsp;&nbsp; username
+        <input value={username} onChange={handleUsername} />
+        &nbsp;&nbsp; password
+        <input value={password} onChange={handlePassword} />
+        name
+        <input value={name} onChange={handleName} />
+        &nbsp;&nbsp;
         <button type='submit'>sign up</button>
       </form>
     </div>

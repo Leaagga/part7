@@ -4,7 +4,19 @@ import { useState, useContext } from 'react'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import userContext from '../UserContext'
 import { removeBlog } from '../userRequest'
-const BlogItem = ({ blog }) => {
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useParams,
+} from 'react-router-dom'
+const BlogItem = ({ blogs }) => {
+  const { blogId } = useParams()
+  const blog = blogs.find((blog) => blog.id == blogId)
+  if (!blog) {
+    return null
+  }
   const queryClient = useQueryClient()
   const [user, userDispatch] = useContext(userContext)
   const [notification, notiDispatch] = useContext(notificationContext)
@@ -44,18 +56,22 @@ const BlogItem = ({ blog }) => {
     <div className='blogItem'>
       <div>
         <div>
-          {blog.title} {blog.author}
-          &nbsp;
-          {user.user.username == blog.user.username ? (
-            <button onClick={handleDelete}>delete</button>
-          ) : null}
+          <h2>
+            {blog.title} {blog.author}
+            &nbsp;{' '}
+            {user.user && user.user.username == blog.user.username ? (
+              <button onClick={handleDelete}>delete</button>
+            ) : null}
+          </h2>
         </div>
         <div>
-          {blog.likes}
+          {blog.likes}&nbsp;&nbsp;&nbsp;&nbsp;
           <button onClick={handleLikes}>like</button>
         </div>
-        <div>{blog.url}</div>
-        <div>{blog.user.username}</div>
+        <div>
+          <a href={`${blog.url}`}>{blog.url}</a>
+        </div>
+        <div>add by {blog.user.username}</div>
       </div>
     </div>
   )

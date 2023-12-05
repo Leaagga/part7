@@ -11,6 +11,7 @@ import userContext from './UserContext'
 import UsersHome from './components/UsersHome'
 import UsersBlog from './components/UsersBlogs'
 import { getAllUsers } from './userRequest'
+import BlogItem from './components/BlogItem'
 function App() {
   const [user, userDispatch] = useContext(userContext)
   const [users, setUsers] = useState([])
@@ -39,13 +40,17 @@ function App() {
   }
   const blogs = result.data
   const Home = ({ user, blogs }) => {
-    return user.user ? (
+    return (
       <div>
-        <BlogForm />
-        {blogs ? <Blog blogs={blogs} /> : null}
+        {user.user ? (
+          <div>
+            <BlogForm />
+          </div>
+        ) : (
+          <div></div>
+        )}
+        <div>{blogs ? <Blog blogs={blogs} /> : null}</div>
       </div>
-    ) : (
-      <div></div>
     )
   }
   return (
@@ -62,6 +67,7 @@ function App() {
         <Route path='/users' element={<UsersHome users={users} />} />
         <Route path='/users/:userId' element={<UsersBlog users={users} />} />
         <Route path='/' element={<Home user={user} blogs={blogs} />} />
+        <Route path='/blogs/:blogId' element={<BlogItem blogs={blogs} />} />
       </Routes>
     </Router>
   )

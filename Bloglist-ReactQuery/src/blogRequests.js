@@ -18,3 +18,18 @@ export const deleteBlog = async (blog) => {
   const response = await axios.delete(`${baseUrl}/${blog.id}`)
   return response.data
 }
+export const commentAdd = async ({ blog, comment }) => {
+  const id = blog.id
+
+  const response = await axios.get(`${baseUrl}/${id}`)
+  console.log(response)
+  const comments = response.data.comments
+  console.log(comments)
+  const newComments = comments.concat(comment)
+  console.log(newComments)
+  const changeComments = await axios.patch(`${baseUrl}/${id}`, {
+    comments: newComments,
+  })
+  console.log(changeComments)
+  return changeComments.data
+}

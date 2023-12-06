@@ -84,7 +84,3 @@ export const removeBlog = async ({ user, blog }) => {
   console.log(response.data)
   return response.data
 }
-export const getComments = async (blog) => {
-  const id = blog.id
-  const response = await axios.get(`${baseUrl}/${id}/comments`)
-}

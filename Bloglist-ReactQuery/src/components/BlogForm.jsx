@@ -4,6 +4,8 @@ import { createBlog } from '../blogRequests'
 import userContext from '../UserContext'
 import notificationContext from '../notificationContext'
 import { addBlog } from '../userRequest'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Table, Form, Button } from 'react-bootstrap'
 const BlogForm = () => {
   const queryClient = useQueryClient()
   const getId = () => (100000 * Math.random()).toFixed(0)
@@ -12,6 +14,7 @@ const BlogForm = () => {
   const showWhenVisible = { display: visible ? '' : 'none' }
   const [notification, notiDispatch] = useContext(notificationContext)
   const [user, userDispatch] = useContext(userContext)
+
   const newBlogMutation = useMutation({
     mutationFn: createBlog,
     onSuccess: (newBlog) => {
@@ -61,33 +64,33 @@ const BlogForm = () => {
   }
   return (
     <div>
-      <form onSubmit={handleBlogCreate}>
-        <button
+      <Form onSubmit={handleBlogCreate}>
+        <Button
           type='button'
           style={hideWhenVisible}
           onClick={() => setVisible(true)}
         >
           create new blog
-        </button>
-        <div style={showWhenVisible}>
-          <div>
-            title
-            <input value={title} onChange={handleTitleChange} />
-          </div>
-          <div>
-            author
-            <input value={author} onChange={handleAuthorChange} />
-          </div>
-          <div>
-            url
-            <input value={url} onChange={handleUrlChange} />
-          </div>
-          <button type='submit'>submit</button>
-          <button type='button' onClick={() => setVisible(false)}>
+        </Button>
+        <div style={showWhenVisible} className='container'>
+          <Form.Group className='mb-3' size='sm'>
+            <Form.Label>title</Form.Label>
+            <Form.Control value={title} onChange={handleTitleChange} />
+          </Form.Group>
+          <Form.Group className='mb-3'>
+            <Form.Label>author</Form.Label>
+            <Form.Control value={author} onChange={handleAuthorChange} />
+          </Form.Group>
+          <Form.Group className='mb-3'>
+            <Form.Label>url</Form.Label>
+            <Form.Control value={url} onChange={handleUrlChange} />
+          </Form.Group>
+          <Button type='submit'>submit</Button>&nbsp;&nbsp;
+          <Button type='button' onClick={() => setVisible(false)}>
             close
-          </button>
+          </Button>
         </div>
-      </form>
+      </Form>
     </div>
   )
 }

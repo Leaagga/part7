@@ -6,15 +6,15 @@ import {
   Link,
   useParams,
 } from 'react-router-dom'
-
+import { Table, Form, Button, ListGroup } from 'react-bootstrap'
 const UsersHome = ({ users }) => {
   return (
     <div>
       <h2>Users</h2>
-      <table>
+      <Table>
         <thead>
           <tr>
-            <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>user</th>
             <th>blogs created</th>
           </tr>
         </thead>
@@ -34,7 +34,7 @@ const UsersHome = ({ users }) => {
               )
             })}
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }

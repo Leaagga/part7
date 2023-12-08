@@ -4,31 +4,34 @@ const notificationReducer = (state, action) => {
     case 'CREATE':
       return {
         content: `A new blog ${action.payload.title} by ${action.payload.author} added`,
-        type: 'blog',
+        type: 'success',
       }
     case 'LIKES':
-      return { content: `You liked ${action.payload.title}`, type: 'blog' }
+      return { content: `You liked ${action.payload.title}`, type: 'info' }
 
     case 'DELETE':
       return {
         content: `Blog ${action.payload.title} by ${action.payload.author} removed`,
-        type: 'blog',
+        type: 'success',
       }
     case 'LOGIN':
-      return { content: `${action.payload.username} logged in`, type: 'user' }
+      return {
+        content: `${action.payload.username} logged in`,
+        type: 'primary',
+      }
 
     case 'LOGOUT':
-      return { content: `Logged out`, type: 'user' }
+      return { content: `Logged out`, type: 'primary' }
 
     case 'CLEATR':
-      return { content: null, type: 'NULL' }
+      return { content: null, type: 'primary' }
 
     case 'ERROR':
-      return { content: `Error: ${action.payload}`, type: 'error' }
+      return { content: `Error: ${action.payload}`, type: 'warning' }
     case 'SIGNUP':
       return {
         content: `created new user ${action.payload.username}`,
-        type: 'user',
+        type: 'success',
       }
     default:
       return state

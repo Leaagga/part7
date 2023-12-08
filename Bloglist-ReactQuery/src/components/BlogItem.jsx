@@ -12,6 +12,7 @@ import {
   useParams,
 } from 'react-router-dom'
 import BlogComments from './BlogComments'
+import Button from 'react-bootstrap/Button'
 const BlogItem = ({ blogs }) => {
   const { blogId } = useParams()
   const blog = blogs.find((blog) => blog.id == blogId)
@@ -61,13 +62,13 @@ const BlogItem = ({ blogs }) => {
             {blog.title} {blog.author}
             &nbsp;{' '}
             {user.user && user.user.username == blog.user.username ? (
-              <button onClick={handleDelete}>delete</button>
+              <Button onClick={handleDelete}>delete</Button>
             ) : null}
           </h2>
         </div>
         <div>
           {blog.likes}&nbsp;&nbsp;&nbsp;&nbsp;
-          <button onClick={handleLikes}>like</button>
+          <Button onClick={handleLikes}>like</Button>
         </div>
         <div>
           <a href={`${blog.url}`}>{blog.url}</a>

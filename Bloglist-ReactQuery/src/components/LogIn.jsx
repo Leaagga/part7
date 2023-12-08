@@ -3,6 +3,12 @@ import userContext from '../UserContext'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { createUser, logIn } from '../userRequest'
 import notificationContext from '../notificationContext'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import InputGroup from 'react-bootstrap/InputGroup'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Navbar from 'react-bootstrap/Navbar'
 const LogIn = () => {
   const queryClient = useQueryClient()
   const [visible, setVisible] = useState(false)
@@ -53,37 +59,100 @@ const LogIn = () => {
   const showWhenVisible = { display: visible ? '' : 'none' }
   return user.user == null ? (
     <div>
-      <form onSubmit={handleLogIn} style={hideWhenVisible}>
-        Log in &nbsp;&nbsp;&nbsp;&nbsp;
-        <button onClick={() => setVisible(true)} type='button'>
-          sign up
-        </button>
-        &nbsp;&nbsp; username
-        <input value={username} onChange={handleUsername} />
-        &nbsp;&nbsp; password
-        <input value={password} onChange={handlePassword} />
-        &nbsp;&nbsp;
-        <button type='submit'>log in</button>
-      </form>
-      <form onSubmit={handleSignUp} style={showWhenVisible}>
-        Sign up &nbsp;&nbsp;&nbsp;&nbsp;
-        <button onClick={() => setVisible(false)} type='button'>
-          log in
-        </button>
-        &nbsp;&nbsp; username
-        <input value={username} onChange={handleUsername} />
-        &nbsp;&nbsp; password
-        <input value={password} onChange={handlePassword} />
-        name
-        <input value={name} onChange={handleName} />
-        &nbsp;&nbsp;
-        <button type='submit'>sign up</button>
-      </form>
+      <Form inline onSubmit={handleLogIn} style={hideWhenVisible}>
+        <Row className='align-items-center '>
+          <Col xs='auto'>Log in</Col>
+
+          <Col xs='auto'>
+            <Button onClick={() => setVisible(true)} type='button' size='sm'>
+              sign up
+            </Button>
+          </Col>
+          <Col xs='auto'>
+            <InputGroup>
+              <InputGroup.Text> username</InputGroup.Text>
+
+              <Form.Control
+                className=' mr-sm-2'
+                value={username}
+                onChange={handleUsername}
+              />
+            </InputGroup>
+          </Col>
+          <Col xs='auto'>
+            <InputGroup>
+              <InputGroup.Text>password</InputGroup.Text>
+
+              <Form.Control
+                className=' mr-sm-2'
+                value={password}
+                onChange={handlePassword}
+              />
+            </InputGroup>
+          </Col>
+
+          <Col xs='auto'>
+            <Button type='submit' size='sm'>
+              Log in
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+
+      <Form onSubmit={handleSignUp} style={showWhenVisible} inline>
+        <Row className='align-items-center '>
+          <Col xs='auto'>Sign up</Col>
+          <Col xs='auto'>
+            <Button onClick={() => setVisible(false)} type='button' size='sm'>
+              log in
+            </Button>
+          </Col>
+          <Col xs='auto'>
+            <InputGroup>
+              <InputGroup.Text>username</InputGroup.Text>
+              <Form.Control
+                className=' mr-sm-2'
+                value={username}
+                onChange={handleUsername}
+              />
+            </InputGroup>
+          </Col>
+          <Col xs='auto'>
+            <InputGroup>
+              <InputGroup.Text>password</InputGroup.Text>
+              <Form.Control
+                className=' mr-sm-2'
+                value={password}
+                onChange={handlePassword}
+              />
+            </InputGroup>
+          </Col>
+          <Col xs='auto'>
+            <InputGroup>
+              <InputGroup.Text>name</InputGroup.Text>
+              <Form.Control
+                className=' mr-sm-2'
+                value={name}
+                onChange={handleName}
+              />
+            </InputGroup>
+          </Col>
+          <Col xs='auto'>
+            <Button type='submit' size='sm'>
+              sign up
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
   ) : (
     <div>
-      {user.user.username} logged in.
-      <button onClick={handleLogOut}>log out</button>
+      <Row className='align-items-center '>
+        <Col xs='auto'>{user.user.username} logged in.</Col>
+        <Col xs='auto'>
+          <Button onClick={handleLogOut}>log out</Button>
+        </Col>
+      </Row>
     </div>
   )
 }

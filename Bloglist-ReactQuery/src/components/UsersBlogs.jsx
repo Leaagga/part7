@@ -6,6 +6,7 @@ import {
   Link,
   useParams,
 } from 'react-router-dom'
+import { ListGroup } from 'react-bootstrap'
 const UsersBlog = ({ users }) => {
   const { userId } = useParams()
   const user = users.find((u) => {
@@ -15,11 +16,13 @@ const UsersBlog = ({ users }) => {
     <div>
       <h2>{user.username}</h2>
       <h3>added blogs</h3>
-      <ul>
+      <ListGroup as='ul'>
         {user.blogs.map((b) => (
-          <li key={b.id}>{b.title}</li>
+          <ListGroup.Item as='li' key={b.id}>
+            {b.title}
+          </ListGroup.Item>
         ))}
-      </ul>
+      </ListGroup>
     </div>
   ) : null
 }

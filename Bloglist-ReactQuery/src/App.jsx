@@ -12,6 +12,14 @@ import UsersHome from './components/UsersHome'
 import UsersBlog from './components/UsersBlogs'
 import { getAllUsers } from './userRequest'
 import BlogItem from './components/BlogItem'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Table from 'react-bootstrap/Table'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 function App() {
   const [user, userDispatch] = useContext(userContext)
   const [users, setUsers] = useState([])
@@ -56,34 +64,33 @@ function App() {
 
   return (
     <Router>
-      <nav style={{ backgroundColor: 'grey' }}>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <Link to='/'>blogs</Link>
-              </td>
-              <td>
-                <Link to='/users'>users</Link>
-              </td>
-              <td>
-                <LogIn />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </nav>
-      <h2>blogs</h2>
-      <div></div>
+      <Navbar className='bg-body-tertiary '>
+        <Container fluid>
+          <Nav className='me-auto'>
+            <Nav.Link href='/'>blogs</Nav.Link>
 
-      <Notification />
-
-      <Routes>
-        <Route path='/users' element={<UsersHome users={users} />} />
-        <Route path='/users/:userId' element={<UsersBlog users={users} />} />
-        <Route path='/' element={<Home user={user} blogs={blogs} />} />
-        <Route path='/blogs/:blogId' element={<BlogItem blogs={blogs} />} />
-      </Routes>
+            <Nav.Link href='/users'>users</Nav.Link>
+          </Nav>
+          <LogIn />
+        </Container>
+      </Navbar>
+      <h2>&nbsp;&nbsp;&nbsp;&nbsp;blog app</h2>
+      <Container fluid='sm'>
+        <Row md='atuo'>
+          <Notification />
+        </Row>
+        <Row md='2'>
+          <Routes>
+            <Route path='/users' element={<UsersHome users={users} />} />
+            <Route
+              path='/users/:userId'
+              element={<UsersBlog users={users} />}
+            />
+            <Route path='/' element={<Home user={user} blogs={blogs} />} />
+            <Route path='/blogs/:blogId' element={<BlogItem blogs={blogs} />} />
+          </Routes>
+        </Row>
+      </Container>
     </Router>
   )
 }
